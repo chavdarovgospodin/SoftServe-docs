@@ -1,6 +1,4 @@
 function isEven(num) {
-    var even = true;
-    var odd = false;
 
     if (num == 1) {
         return false;

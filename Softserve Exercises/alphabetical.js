@@ -1,9 +1,9 @@
 function alhabetical (str) {
     var alphabet = str.toLowerCase()
         .split("")
-        .sort();
-
-    return alphabet.join("");
+        .sort()
+        .join("");
+    return alphabet;
 }
 
-console.log(alphabetical("bca"));
+console.log(alhabetical("habmlo"));
