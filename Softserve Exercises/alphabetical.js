@@ -1,4 +1,4 @@
-function alhabetical (str) {
+function alhabetical(str) {
     var alphabet = str.toLowerCase()
         .split("")
         .sort()

@@ -1,5 +1,5 @@
-function puppAge (num,conv) {
+function puppAge(num, conv) {
     console.log(`Your dog is ${num* conv} years old in dog years`);
 }
 
-puppAge(3,7)
+puppAge(3, 7)

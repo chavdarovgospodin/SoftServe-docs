@@ -1,8 +1,8 @@
-function countBs (str) {
+function countBs(str) {
     let counter = 0;
-    for (let i = 0; i<str.length; i++) {
+    for (let i = 0; i < str.length; i++) {
         if (str[i] === "B") {
-            counter ++;
+            counter++;
         }
     }
     return counter;
@@ -10,16 +10,16 @@ function countBs (str) {
 
 console.log(countBs("ABBC"));
 
-function countChar (str,n) {
+function countChar(str, n) {
     let counter = 0;
 
-    for (let i = 0 ; i<str.length; i++) {
+    for (let i = 0; i < str.length; i++) {
         if (str[i] === n) {
-            counter ++;
+            counter++;
         }
-       
+
     }
     return counter;
 }
 
-console.log(countChar("abbaae","e"));
+console.log(countChar("abbaae", "e"));
