@@ -117,17 +117,127 @@ import '../styles/index.scss';
 //     });
 // }
 
+// function addClasses() {
+//     var listItems = document.querySelectorAll("ul li");
+//     var list = document.querySelector("ul");
+//     for (var i = 0; i < listItems.length; i++) {
+//         listItems[i].classList.add("list-group-item");
+//     }
+//     list.addEventListener("click", function (item) {
+//         if (item.target.tagName === "LI") {
+//             item.target.classList.toggle("checked");
+//         }
+//     });
+// }
+
+// function getTodos() {
+//     var todos = new Array;
+//     var todosStr = localStorage.getItem("todo");
+//     if (todosStr !== null) {
+//         todos = JSON.parse(todosStr);
+//     }
+//     return todos;
+// }
+
+// function add() {
+//     var task = document.getElementById("textField").value;
+//     var textObj = document.querySelector("#textField");
+//     var todos = getTodos();
+//     for (var i = 0; i < todos.length; i++) {
+//         if (todos[i] == task) {
+//             alert(task + " is already defined");
+//             textObj.value = "";
+//             textObj.focus();
+//             return;
+//         }
+//     }
+
+//     if (task.trim().length == 0) {
+//         alert("Please enter something");
+//         textObj.focus();
+//     } else {
+//         todos.push(task);
+//         localStorage.setItem("todo", JSON.stringify(todos));
+//         textObj.value="";
+//         textObj.focus();
+//     }
+
+//     show();
+
+//     return false;
+// }
+
+// function remove() {
+//     var id = this.getAttribute("id");
+//     var todos = getTodos();
+//     todos.splice(id, 1);
+//     localStorage.setItem("todo", JSON.stringify(todos));
+
+//     show();
+
+//     return false;
+// }
+
+// function show() {
+//     var todos = getTodos();
+//     var html = '<ul>';
+//     for (var i = 0; i < todos.length; i++) {
+//         html += '<li>' + todos[i] + '<span class="close" id="' + i + '">\u00D7</span></li>';
+//     };
+//     html += '</ul>';
+
+//     document.getElementById('todos').innerHTML = html;
+
+//     var buttons = document.getElementsByClassName("close");
+//     for (var i = 0; i < buttons.length; i++) {
+//         buttons[i].addEventListener("click", remove);
+//     };
+//     addClasses();
+//     onClick();
+// }
+
+// function onClick() {
+//     var todos = document.querySelectorAll("li");
+//     // todos.addEventListener("click",function(){
+//     //     foreach((todo)=>{
+//     //         console.log(todo);
+//     //     });
+//     // });
+//     console.log(todos);
+// }
+
+
+
+// document.getElementById('add').addEventListener('click', add);
+// show();
+
+
+// window.addEventListener("load", function () {
+//     addClasses();
+//     getTodos();
+//     add();
+//     remove();
+//     // contactValues();
+//     // addTodos();
+//     // addCloseBtn();
+//     // deleteTodo();
+
+
+// });
+
+
+
 function addClasses() {
     var listItems = document.querySelectorAll("ul li");
     var list = document.querySelector("ul");
     for (var i = 0; i < listItems.length; i++) {
         listItems[i].classList.add("list-group-item");
     }
-    list.addEventListener("click", function (item) {
-        if (item.target.tagName === "LI") {
-            item.target.classList.toggle("checked");
-        }
-    });
+    // list.addEventListener("click", function (item) {
+    //     if (item.target.tagName === "LI") {
+    //         item.target.classList.toggle("checked");
+    //     }
+    // });
 }
 
 function getTodos() {
@@ -137,6 +247,16 @@ function getTodos() {
         todos = JSON.parse(todosStr);
     }
     return todos;
+}
+
+function getCompleted() {
+  var completedTodos = new Array;
+    var todosStr = localStorage.getItem("completedTodo");
+    if (todosStr !== null) {
+      completedTodos = JSON.parse(todosStr);
+    }
+    return completedTodos;
+
 }
 
 function add() {
@@ -178,6 +298,61 @@ function remove() {
     return false;
 }
 
+function removeCompleted() {
+    var id = this.getAttribute("id");
+    var todos = getCompleted();
+    todos.splice(id, 1);
+    localStorage.setItem("completedTodo", JSON.stringify(todos));
+
+    showCompleted();
+
+    return false;
+}
+
+function addCompleted () {
+  var todos = getTodos();
+  var completed = getCompleted();
+  var list = document.querySelector("ul");
+    console.log(list);
+    list.addEventListener("click", function (item){
+             if (item.target.tagName === "LI") {
+            item.target.classList.toggle("checked");
+            completed.push(item.target.innerHTML);
+        todos.pop(item.target.innerHTML);
+        console.log(todos);
+        localStorage.setItem("completedTodo", JSON.stringify(completed));
+        showCompleted ();
+        }
+        
+
+        //if the same elem dont push to completed list
+
+       
+    });
+
+
+
+}
+
+function showCompleted () {
+  var completedTodos = getCompleted();
+  console.log(completedTodos);
+  var html = '<ul>';
+    for (var i = 0; i<completedTodos.length; i++) {
+      html += '<li>' + completedTodos[i];
+    }
+    html +=  '</ul>';
+
+    document.getElementById('completedTodo').innerHTML = html;
+
+    var buttons = document.getElementsByClassName("close");
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", removeCompleted);
+    };
+    addClasses();
+
+}
+
 function show() {
     var todos = getTodos();
     var html = '<ul>';
@@ -193,34 +368,13 @@ function show() {
         buttons[i].addEventListener("click", remove);
     };
     addClasses();
-    onClick();
-}
-
-function onClick() {
-    var todos = document.querySelectorAll("li");
-    // todos.addEventListener("click",function(){
-    //     foreach((todo)=>{
-    //         console.log(todo);
-    //     });
-    // });
-    console.log(todos);
+    
+   
+    
 }
 
 
 
 document.getElementById('add').addEventListener('click', add);
 show();
-
-
-// window.addEventListener("load", function () {
-//     addClasses();
-//     getTodos();
-//     add();
-//     remove();
-//     // contactValues();
-//     // addTodos();
-//     // addCloseBtn();
-//     // deleteTodo();
-
-
-// });
+showCompleted();
