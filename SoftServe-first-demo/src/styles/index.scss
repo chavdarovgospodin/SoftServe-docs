@@ -89,3 +89,13 @@ position: static;
   float: left;
   position: relative;
 }
+
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.hidden {
+  display: none;
+}

@@ -227,52 +227,67 @@ import '../styles/index.scss';
 
 
 
+
 function editTodos() {
     var text = this.parentNode.innerText;
     var id = this.getAttribute('id');
     var todos = getTodos();
-
-    // var text = this.getElementsByTagName('LI');
     var textObj = document.querySelector("#textField");
     var matched = text.replace('×edit', '').trim();
-
     textObj.value = matched;
-    console.log(matched);
-    document.getElementById('add').addEventListener('click', function () {
-        var textField = document.querySelector('#textField');
+    var editBtn = document.getElementById('edit');
+    var submitBtn = document.getElementById('add');
+    if (editBtn.classList != 'hidden') {
+        editBtn.classList.remove('hidden');
+        submitBtn.classList.toggle('hidden');
+    }
 
-        for (var i = 0; i < todos.length; i++) {
-            if (textField.value == todos[i]) {
-               alert("already defined");
-               return;
-            } 
-            else {
-            //    todos[i] = textField.value;
-               console.log(todos[i]);
-                todos.push(textField.value);
-               localStorage.setItem("todo", JSON.stringify(todos));
-               textObj.value = "";
-               textObj.focus();
-               show();
-            }
-        }
+    document.getElementById('edit').addEventListener('click', function () {
+        var task = document.getElementById("textField").value;
+        todos.splice(id, 1, task);
+        console.log(id);
+        localStorage.setItem("todo", JSON.stringify(todos));
+        textObj.value = '';
+        show();
+        location.reload();
     });
-
-    // console.log(text);
-    // var todos = getTodos();
-    // todos.splice(id, 1);
-    // localStorage.setItem("todo", JSON.stringify(todos));
-
-    // show();
-
-    // return false;
-
-
 
 }
 
-// window.editTodos = editTodos;
+// window.editTodos = editTodos;      
 
+function checkCompleted() {
+    var todos = getTodos();
+    var completedTodos = getCompleted();
+
+    var list = document.querySelectorAll('li');
+    var input = document.querySelector("#textField");
+    var todos = getTodos();
+    list.forEach(function (item) {
+        item.addEventListener('click', function () {
+            if (item.classList == 'completed') {
+                item.classList.remove('completed');
+            } else {
+                // todos.splice(id,1);
+                // completedTodos.push(id);
+                // localStorage.setItem("todo", JSON.stringify(todos));
+                // localStorage.setItem("todo", JSON.stringify(completedTodos));
+                // show();
+                // showCompleted();   
+
+
+                // TODO --- PUSH ELEMENTS IN COMPLETED LIST AND DELETE ELEMENTS FROM TODO LIST
+
+
+
+
+
+                item.classList.toggle('completed');
+            }
+
+        });
+    });
+}
 
 
 function addClasses() {
@@ -304,10 +319,10 @@ function getCompleted() {
         completedTodos = JSON.parse(todosStr);
     }
     return completedTodos;
-
 }
 
 function add() {
+
     var task = document.getElementById("textField").value;
     var textObj = document.querySelector("#textField");
     var todos = getTodos();
@@ -329,9 +344,7 @@ function add() {
         textObj.value = "";
         textObj.focus();
     }
-
     show();
-
     return false;
 }
 
@@ -340,9 +353,7 @@ function remove() {
     var todos = getTodos();
     todos.splice(id, 1);
     localStorage.setItem("todo", JSON.stringify(todos));
-
     show();
-
     return false;
 }
 
@@ -351,9 +362,7 @@ function removeCompleted() {
     var todos = getCompleted();
     todos.splice(id, 1);
     localStorage.setItem("completedTodo", JSON.stringify(todos));
-
     showCompleted();
-
     return false;
 }
 
@@ -371,18 +380,13 @@ function addCompleted() {
             localStorage.setItem("completedTodo", JSON.stringify(completed));
             showCompleted();
         }
-
-
         //if the same elem dont push to completed list
-
-
     });
-
 }
 
 function showCompleted() {
     var completedTodos = getCompleted();
-    console.log(completedTodos);
+    // console.log(completedTodos);
     var html = '<ul>';
     for (var i = 0; i < completedTodos.length; i++) {
         html += '<li>' + completedTodos[i];
@@ -399,13 +403,11 @@ function showCompleted() {
     addClasses();
 }
 
-
-
 function show() {
     var todos = getTodos();
     var html = '<ul>';
     for (var i = 0; i < todos.length; i++) {
-        html += '<li><input type="checkbox" class="input" id="' + i + '"/>' + todos[i] + '<span class="close" id="' + i + '">\u00D7</span>' + '<button class="btn btn-primary" id="' + i + '" >edit</button></li>';
+        html += '<li id="' + i + '"><input type="checkbox" class="input" id="' + i + '"/>' + todos[i] + '<span class="close" id="' + i + '">\u00D7</span>' + '<button class="btn btn-primary" id="' + i + '" >edit</button></li>';
     };
     html += '</ul>';
 
@@ -423,13 +425,15 @@ function show() {
     addClasses();
 }
 
-// window.addEventListener("load", function () {
-//    editTodos();
-// });
+function clearAllTodos() {
+    if (confirm('Are you sure?')) {
+        localStorage.clear();
+        show();
+    }
+}
 
-
-
-
-// document.getElementById('add').addEventListener('click', add);
+document.getElementById('add').addEventListener('click', add);
+document.getElementById('clear').addEventListener('click', clearAllTodos);
 show();
 showCompleted();
+checkCompleted();
