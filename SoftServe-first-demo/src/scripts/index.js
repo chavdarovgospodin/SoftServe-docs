@@ -66,8 +66,8 @@ function checkCompleted() {
     localStorage.setItem("todo", JSON.stringify(todos));
     localStorage.setItem("completedTodo", JSON.stringify(completed));
     console.log(todos, completed);
+    show();
      showCompleted();
-     show();
     // TODO --- PUSH ELEMENTS IN COMPLETED LIST AND DELETE ELEMENTS FROM TODO LIST              
 }
 
