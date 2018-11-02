@@ -5,6 +5,7 @@
 body,
 html {
     height: 100%; // background-color: 	#B0C4DE;
+    background-color:#eaeffa;
 }
 
 ul li {
@@ -12,18 +13,17 @@ ul li {
     position: relative;
     padding: 12px 8px 12px 40px;
     list-style-type: none;
-    background: #eee;
+    background: #e6ffff;
     font-size: 18px;
-    transition: 0.2s;
-    /* make the list items unselectable */
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; // todo some styling
+    transition: 0.3s;
+}
+
+#textField {
+    width: 250px;
 }
 
 ul li:hover {
-    background: #A9A9A9; // color: #fff;
+    background: #A9A9A9;
 }
 
 .container {
@@ -35,16 +35,8 @@ ul li:hover {
     display: none;
 }
 
-.form-inline {
-    position: static;
-}
-
 li {
     display: inline-block;
-}
-
-.complete-item{
-  float: left;
 }
 
 .item-icon {
@@ -52,8 +44,8 @@ li {
     cursor: pointer;
 }
 
-.complete-item {
-    color: greenyellow;
+.complete-item{
+    color: black;
 }
 
 .complete-item:hover {
@@ -61,15 +53,15 @@ li {
 }
 
 .edit-item {
-    color: blue;
+    color: black;
 }
 
 .edit-item:hover {
-    color: blue;
+    color:#66ffff;
 }
 
 .delete-item {
-    color: red;
+    color: black;
 }
 
 .delete-item:hover {
@@ -78,7 +70,7 @@ li {
 
 .completed {
     text-decoration: line-through;
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 .form-inline {
@@ -86,10 +78,19 @@ li {
     margin-right: auto;
 }
 
-.close {
-  font-size: 1.4rem;
-  cursor: pointer;
-  color: red;
-  float: none;
-  opacity: 100;
+.closeItm {
+    font-size: 1.4rem;
+    cursor: pointer;
+    float: none;
+    opacity: 100;
+    color: black;
+}
+
+.closeItm:hover {
+    color: red;
+}
+
+ul li {
+    border-radius: 3px;
+    border-style: inset;
 }

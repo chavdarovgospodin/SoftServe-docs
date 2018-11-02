@@ -1,3 +1,5 @@
+### Vanilla JS Todo App for Softserve
+
 
 ### Installation
 
