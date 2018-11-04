@@ -1,9 +1,22 @@
 import '../styles/index.scss';
 
 class Todos  {
+    let todos = []
+    constructor(task){
 
+    }
+
+    add(task){
+        
+    }
+    
+    add(task){
+
+    }
 }
 
+let todo = new Todos()
+todo.add()
 class CompletedTodos {
 
 }
