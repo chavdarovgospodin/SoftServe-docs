@@ -13,7 +13,7 @@ class Todos  {
     add(task){
 
     }
-}
+};
 
 let todo = new Todos()
 todo.add()
