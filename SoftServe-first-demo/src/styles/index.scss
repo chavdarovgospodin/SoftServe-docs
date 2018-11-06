@@ -94,3 +94,9 @@ ul li {
     border-radius: 3px;
     border-style: inset;
 }
+
+ @media (min-width: 768px) {
+    .col-sm-8 {
+      float:none;
+  }
+}
