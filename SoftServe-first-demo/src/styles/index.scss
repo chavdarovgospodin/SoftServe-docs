@@ -18,6 +18,13 @@ ul li {
     transition: 0.3s;
 }
 
+h2 {
+    margin: 20px;
+}
+#completedTodo{
+    margin-left: -9px;
+}
+
 #textField {
     width: 250px;
 }
@@ -40,7 +47,7 @@ li {
 }
 
 .item-icon {
-    font-size: 1.4rem;
+    font-size: 2.2rem;
     cursor: pointer;
 }
 
@@ -79,7 +86,6 @@ li {
 }
 
 .closeItm {
-    font-size: 1.4rem;
     cursor: pointer;
     float: none;
     opacity: 100;
@@ -99,4 +105,12 @@ ul li {
     .col-sm-8 {
       float:none;
   }
+
+}
+.btn-outline-info {
+    border: 1px solid #17a2b8;
+}
+
+.btn-outline-secondary {
+    border: 1px solid #6c757d;
 }

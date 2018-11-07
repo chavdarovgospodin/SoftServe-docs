@@ -28,15 +28,18 @@ class Todos {
 
         for (var i = 0; i < todos.length; i++) {
             if (todos[i] == task) {
-                alert(task + " is already defined");
+                $("#myModal .text").text(`${task} is already defined!`);
+                $("#myModal").modal();
                 textObj.value = "";
                 textObj.focus();
                 return;
             } // if the task is already defined in the list alert
         }
         if (task.trim().length == 0) {
-            alert("Please enter something");
+            $("#myModal .text").text('Please write something first!');
+            $("#myModal").modal();
             textObj.focus();
+            return;
         } // if the input field is empty alert
         else {
             todos.push(task);
@@ -100,18 +103,18 @@ class Todos {
 
         document.getElementById('completedTodo').innerHTML = html; // assign the innerHTML of html to the completedTodo div
 
-        var closeButtons = document.getElementsByClassName("closeItm"); // get all close and active buttons
-        var returnToListBtn = document.getElementsByClassName("active");
+        var removeButtons = document.getElementsByClassName("closeItm"); // get all close and active buttons
+        var returnToListBtns = document.getElementsByClassName("active");
 
-        for (var k = 0; k < returnToListBtn.length; k++) {
-            returnToListBtn[k].addEventListener("click", function () {
+        for (var k = 0; k < returnToListBtns.length; k++) {
+            returnToListBtns[k].addEventListener("click", function () {
                 var id = this.getAttribute('id');
                 self.returnCompletedToList(id);
             });
         } // return the selected completed todo to the main list
 
-        for (var i = 0; i < closeButtons.length; i++) {
-            closeButtons[i].addEventListener("click", function () {
+        for (var i = 0; i < removeButtons.length; i++) {
+            removeButtons[i].addEventListener("click", function () {
                 var id = this.getAttribute(id);
                 self.removeCompleted(id);
             }); // delete completed todo
@@ -141,13 +144,15 @@ class Todos {
 
             for (var i = 0; i < self.todos.length; i++) {
                 if (self.todos[i] == task) {
-                    alert(task + " is already defined");
+                    $("#myModal .text").text(`${task} is already defined!`);
+                    $("#myModal").modal();
                     textObj.focus();
                     return;
                 } //if task is already defined alert
             }
             if (task.trim().length == 0) {
-                alert('Please write something first!');
+                $("#myModal .text").text('Please write something first!');
+                $("#myModal").modal();
                 textObj.focus();
             } //if input field is empty alert
             else {
@@ -157,6 +162,7 @@ class Todos {
                 textObj.value = '';
                 document.getElementById('textField').placeholder = 'Add new task...';
                 location.reload();
+                return; 
             } // replace the old value with the new one
         });
     }
@@ -217,12 +223,11 @@ class Todos {
     }
 
     clearAllTodos() {
-        if (confirm('Are you sure?')) {
-            localStorage.clear();
-            location.reload();
-            return;
-        } // if clear all button click ask for a confirmation and clear the local storage
-    }
+        localStorage.clear();
+        location.reload();
+        return;
+    } // if clear all button click ask for a confirmation and clear the local storage
+
 }
 
 var todos = new Todos();
@@ -234,4 +239,4 @@ document.getElementById('add').addEventListener('click', function () {
     todos.add(input);
 }); // returns the input value to the add function
 
-document.getElementById('clear').addEventListener('click', todos.clearAllTodos);
+document.getElementById('submit').addEventListener('click', todos.clearAllTodos);
