@@ -4,8 +4,8 @@
 
 body,
 html {
-    height: 100%; // background-color: 	#B0C4DE;
-    background-color:#eaeffa;
+    height: 100%;
+    background-color: #eaeffa;
 }
 
 ul li {
@@ -21,7 +21,8 @@ ul li {
 h2 {
     margin: 20px;
 }
-#completedTodo{
+
+#completedTodo {
     margin-left: -9px;
 }
 
@@ -51,7 +52,7 @@ li {
     cursor: pointer;
 }
 
-.complete-item{
+.complete-item {
     color: black;
 }
 
@@ -64,7 +65,7 @@ li {
 }
 
 .edit-item:hover {
-    color:#66ffff;
+    color: #66ffff;
 }
 
 .delete-item {
@@ -80,15 +81,7 @@ li {
     opacity: 0.6;
 }
 
-.form-inline {
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .closeItm {
-    cursor: pointer;
-    float: none;
-    opacity: 100;
     color: black;
 }
 
@@ -101,16 +94,20 @@ ul li {
     border-style: inset;
 }
 
- @media (min-width: 768px) {
+@media (min-width: 768px) {
     .col-sm-8 {
-      float:none;
-  }
-
+        float: none;
+    }
 }
+
 .btn-outline-info {
     border: 1px solid #17a2b8;
 }
 
 .btn-outline-secondary {
     border: 1px solid #6c757d;
+}
+
+#clear {
+    margin: 30px;
 }
